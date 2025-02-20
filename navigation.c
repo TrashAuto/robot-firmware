@@ -1,56 +1,90 @@
 #include <stdio.h>
+#include <math.h>
 
-// Pseudocode for robot navigation system
+// Robot navigation system code/pseudocode on a PIC microcontroller
 
-// Preset perimeter distance variables
-float perimeter_y;
-float perimeter_x;
+// Function prototypes
+void loop(const int perimeter_x, const int perimeter_y, double distance_travelled_y, 
+    double distance_travelled_x, double side_distance);
+void garbage_event();
+void collection_mechanism();
+int detect_garbage();
 
-// Distance tracking variables
-float distance_travelled_y;
-float distanced_travelled_x;
+int main() {
+    // Preset perimeter distance variables
+    const int perimeter_y = 20; // Declare as a 20x20 square for now
+    const int perimeter_x = 20;
 
-// Observable camera distance (facing forward)
-float observed_distance;
-float observed_angle;
+    // Distance tracking variables
+    double distance_travelled_y = 0;
+    double distance_travelled_x = 0;
 
-// Horizontal distance covered by camera
-float side_distance = cos(observed_angle) * observed_distance / sin(observed_angle)
+    // Observable camera distance (facing forward)
+    const int observed_distance = 1;
+    const double observed_angle = 0.785398163; // 45 degrees, TODO: import pi from math.h
 
-// Default function - preset path that the robot loops through
-void default() {
-    // move_forward (track distance_travelled_y, distance_travelled_y)
+    // Horizontal distance covered by camera
+    double side_distance = cos(observed_angle) * observed_distance / sin(observed_angle);
 
-    if (distance_travelled_y = 0.8 * perimeter_y) {
-        // turn 90 degrees
-        // move_forward(side_distance)
-        // turn 90 degrees
-    }
+    loop(perimeter_x, perimeter_y, distance_travelled_y, distance_travelled_x, side_distance);
+    return 0;
+}
 
-    if (distance_travelled_x = 0.8 * perimeter_x) {
-        // turn 90 degrees
-        // move_forward(perimeter_x)
-        // turn 90 degrees
+// Preset path that the robot loops through
+void loop(const int perimeter_x, const int perimeter_y, double distance_travelled_y, 
+    double distance_travelled_x, double side_distance) {
+
+    while(1) { // Infinite loop
+        // NEED LOGIC: move_forward and track distance_travelled_y, distance_travelled_y
+
+        if (distance_travelled_y == 0.8 * perimeter_y) {
+            // NEED LOGIC: turn 90 degrees
+            // NEED LOGIC: move_forward(side_distance)
+            // NEED LOGIC: turn 90 degrees
+        }
+        
+        if (distance_travelled_x == 0.8 * perimeter_x) {
+            // NEED LOGIC: turn 90 degrees
+            // NEED LOGIC: move_forward(perimeter_x)
+            // NEED LOGIC: turn 90 degrees
+        }
+
+        if (detect_garbage()) {
+            garbage_event(); // Calls garbage collection function if garbage detection flag == 1
+        }
     }
 }
 
 // Garbage detection function
-void garbage_event() {
-    // var_distance: distance travelled to garbage
-    // var_angle: angle adjusted to collect garbage (wrt original direction)
+int detect_garbage() {
+    // NEED LOGIC: garbage detection with machine learning
+    // Set if statement to return 1 if true, otherwise function returns 0
 
-    // travel to garbage
-    collection_mechanism()
-
-    // reverse var_distance
-    // turn -var_angle
+    return 0;
 }
 
 // Garbage collection function
+void garbage_event() {
+    double event_distance_travelled; // Distance travelled to garbage
+    double event_angle; // Angle adjusted to collect garbage (wrt original direction)
+
+    // NEED LOGIC: travel to garbage, track and update event_distance_travelled and event_angle
+    
+    // NEED LOGIC: sweep (motors)
+    __delay_ms(5000); // Delay 5 s
+    // NEED LOGIC: rotate up (motors)
+    __delay_ms(5000);
+    // NEED LOGIC: rotate down (motors)
+
+    // NEED LOGIC: reverse by distance event_distance_travelled
+    // NEED LOGIC: turn by -event_angle
+}
+
+// Separate garbage collection function, call this in loop or main for testing purposes
 void collection_mechanism() {
-    // sweep
-    // delay(5s)
-    // rotate motor up
-    // delay(5s)
-    // rotate motor down
+    // NEED LOGIC: sweep (motors)
+    __delay_ms(5000); // Delay 5 s
+    // NEED LOGIC: rotate up (motors)
+    __delay_ms(5000);
+    // NEED LOGIC: rotate down (motors)
 }
