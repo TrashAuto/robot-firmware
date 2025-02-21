@@ -40,7 +40,7 @@ void loop(const int perimeter_x, const int perimeter_y, double distance_travelle
 
         if (distance_travelled_y == 0.8 * perimeter_y) {
             // NEED LOGIC: turn 90 degrees
-            // NEED LOGIC: move_forward(side_distance)
+            // NEED LOGIC: move_forward(side_distance * 2)
             // NEED LOGIC: turn 90 degrees
         }
         
