@@ -14,10 +14,13 @@ void initI2C(void) {
     I2C1CONbits.I2CSIDL = 0;
     // configures SMB bus delay
     PADCFG1bits.SMBUSDEL = 0;
-    
+    // turns on interrupts for slave and master
+    IEC1bits.MI2C1IE = 1;
+    IEC1bits.SI2C1IE = 1;
+
 }
 
-void I2C_Clock_Rate(uint8_t khz){
+void I2C_Clock_Rate(uint16_t khz){
     //For 8mhz clock speed
     //Values from datasheet table 17-1
     switch(khz){
@@ -36,4 +39,22 @@ void I2C_Clock_Rate(uint8_t khz){
     }
 
 
+}
+
+
+void Start_I2C (uint8_t address){
+    
+}
+
+
+void __attribute__((interrupt, no_auto_psv)) _MI2CInterrupt(void){
+    //Don't forget to clear the timer 1 interrupt flag!
+    IFS1bits.MI2C1IF = 0;
+    
+}
+
+void __attribute__((interrupt, no_auto_psv)) _SI2CInterrupt(void){
+    //Don't forget to clear the timer 1 interrupt flag!
+    IFS1bits.SI2C1IF = 0;
+    
 }
