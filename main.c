@@ -7,7 +7,7 @@
 
 #include <xc.h>
 #include <p24F16KA101.h>
-#include <config.h>
+#include "config.h"
 
 int main(void) {
     AD1PCFG = 0xFFFF; /* keep this line as it sets I/O pins that can also be analog to be digital */
